@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
 import 'user_model.dart';
@@ -59,6 +60,11 @@ class UserApiProvider
         throw Exception('Failed to load users');
       }
     } // try
+    on SocketException catch (e)
+    {
+      print("caught the socket exception");
+      exception = e;
+    }
     catch (e)
     {
       print("caught a larger exception $e");
