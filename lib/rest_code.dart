@@ -8,7 +8,7 @@ import 'package:rxdart/rxdart.dart';
 class Repository {
   final userApiProvider = UserApiProvider();
 
-  Future<UserModel> fetchAllMovies(urlidx) => userApiProvider.fetchUserList(urlidx);
+  Future<UserModel> fetchAllUsersFromRepo(urlidx) => userApiProvider.fetchUserList(urlidx);
 }
 
 class UserBloc {
@@ -18,7 +18,7 @@ class UserBloc {
   Observable<UserModel> get allUsers => _userFetcher.stream;
 
   fetchAllUsers(int urlidx) async {
-    UserModel userModel = await _repository.fetchAllMovies(urlidx);
+    UserModel userModel = await _repository.fetchAllUsersFromRepo(urlidx);
     _userFetcher.sink.add(userModel);
   }
 
